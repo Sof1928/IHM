@@ -1,0 +1,103 @@
+<div class="min-h-screen bg-slate-50">
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+      <a class="text-lg font-semibold text-slate-900" routerLink="/offres">Recrutement</a>
+      <nav class="flex flex-wrap items-center gap-2 text-sm">
+        <a
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/offres"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Offres
+        </a>
+        <a
+          *ngIf="isAdmin"
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/admin/candidats"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Candidats
+        </a>
+        <a
+          *ngIf="isAdmin"
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/admin/entreprises"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Entreprises
+        </a>
+        <a
+          *ngIf="isCandidat"
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/candidat/dashboard"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Espace candidat
+        </a>
+        <a
+          *ngIf="isEntreprise"
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/entreprise/dashboard"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Espace entreprise
+        </a>
+        <a
+          *ngIf="isAdmin"
+          class="rounded-full px-3 py-1 text-slate-600 hover:bg-slate-100"
+          routerLink="/admin/dashboard"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Admin
+        </a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <span *ngIf="role" class="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+          {{ role }}
+        </span>
+        <button
+          class="rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:border-slate-400"
+          type="button"
+          (click)="logout()"
+        >
+          Deconnexion
+        </button>
+      </div>
+    </div>
+    <div *ngIf="isAdmin" class="border-t border-slate-100 bg-white">
+      <div class="mx-auto flex max-w-7xl flex-wrap gap-2 px-4 py-2 text-xs text-slate-600">
+        <a
+          class="rounded-full px-3 py-1 hover:bg-slate-100"
+          routerLink="/admin/dashboard"
+          routerLinkActive="bg-slate-900 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Dashboard
+        </a>
+        <a class="rounded-full px-3 py-1 hover:bg-slate-100" routerLink="/admin/users" routerLinkActive="bg-slate-900 text-white">
+          Utilisateurs
+        </a>
+        <a
+          class="rounded-full px-3 py-1 hover:bg-slate-100"
+          routerLink="/admin/candidats"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Gestion candidats
+        </a>
+        <a
+          class="rounded-full px-3 py-1 hover:bg-slate-100"
+          routerLink="/admin/entreprises"
+          routerLinkActive="bg-slate-900 text-white"
+        >
+          Gestion entreprises
+        </a>
+        <a class="rounded-full px-3 py-1 hover:bg-slate-100" routerLink="/admin/offres" routerLinkActive="bg-slate-900 text-white">
+          Gestion offres
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="mx-auto w-full max-w-7xl px-4 py-6">
+    <router-outlet></router-outlet>
+  </main>
+</div>

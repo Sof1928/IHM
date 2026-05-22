@@ -1,0 +1,120 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="card my-5">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-center">
+              <div class="text-xl font-semibold text-slate-900">Recrutement</div>
+            </div>
+            <div class="text-center mt-4">
+              <h2 class="text-secondary"><b>Inscription</b></h2>
+              <p class="fs-4">Creez votre compte</p>
+            </div>
+
+            <div class="form-floating mb-3">
+              <select class="form-select" id="registerRole" formControlName="role">
+                <option value="CANDIDAT">Candidat</option>
+                <option value="ENTREPRISE">Entreprise</option>
+              </select>
+              <label for="registerRole">Role</label>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="registerNom" placeholder="Nom" formControlName="nom" />
+                  <label for="registerNom">Nom</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="registerPrenom" placeholder="Prenom" formControlName="prenom" />
+                  <label for="registerPrenom">Prenom</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" id="registerEmail" placeholder="Email" formControlName="email" />
+              <label for="registerEmail">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="registerPassword"
+                placeholder="Mot de passe"
+                formControlName="motDePasse"
+              />
+              <label for="registerPassword">Mot de passe</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" id="registerTelephone" placeholder="Telephone" formControlName="telephone" />
+              <label for="registerTelephone">Telephone</label>
+            </div>
+
+            <div *ngIf="form.value.role === 'CANDIDAT'">
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerAdresse" placeholder="Adresse" formControlName="adresse" />
+                <label for="registerAdresse">Adresse</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="registerDate" formControlName="dateNaissance" />
+                <label for="registerDate">Date de naissance</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerNiveau" placeholder="Niveau d'etude" formControlName="niveauEtude" />
+                <label for="registerNiveau">Niveau d'etude</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="registerExperience" formControlName="experience" />
+                <label for="registerExperience">Experience (annees)</label>
+              </div>
+            </div>
+
+            <div *ngIf="form.value.role === 'ENTREPRISE'">
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerNomEntreprise" placeholder="Nom entreprise" formControlName="nomEntreprise" />
+                <label for="registerNomEntreprise">Nom entreprise</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerAdresseEntreprise" placeholder="Adresse entreprise" formControlName="adresseEntreprise" />
+                <label for="registerAdresseEntreprise">Adresse entreprise</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerSecteur" placeholder="Secteur" formControlName="secteurActivite" />
+                <label for="registerSecteur">Secteur d'activite</label>
+              </div>
+              <div class="form-floating mb-3">
+                <textarea class="form-control" id="registerDescription" formControlName="description" style="height: 100px"></textarea>
+                <label for="registerDescription">Description</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input class="form-control" id="registerLogo" placeholder="Logo" formControlName="logo" />
+                <label for="registerLogo">Logo (URL)</label>
+              </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="error()">
+              {{ error() }}
+            </div>
+
+            <div class="d-grid mt-4">
+              <button class="btn btn-secondary" type="submit" [disabled]="loading()">
+                {{ loading() ? 'Creation...' : 'Creer un compte' }}
+              </button>
+            </div>
+
+            <hr />
+            <div class="text-center">
+              <a [routerLink]="['/login']">Deja inscrit ? Se connecter</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

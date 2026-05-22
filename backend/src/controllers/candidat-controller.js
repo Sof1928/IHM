@@ -1,0 +1,43 @@
+const { AppError } = require('../utils/errors');
+const candidatService = require('../services/candidat-service');
+
+async function getProfile(req, res, next) {
+  try {
+    const profile = await candidatService.getProfile(req.user.id);
+    res.json(profile);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateProfile(req, res, next) {
+  try {
+    const profile = await candidatService.updateProfile(req.user.id, req.body);
+    res.json(profile);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function addCv(req, res, next) {
+  try {
+    if (!req.file) {
+      throw new AppError(400, 'CV file is required');
+    }
+    const result = await candidatService.addCv(req.user.id, req.file.filename);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function addLettre(req, res, next) {
+  try {
+    const result = await candidatService.addLettre(req.user.id, req.body.contenu);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { getProfile, updateProfile, addCv, addLettre };

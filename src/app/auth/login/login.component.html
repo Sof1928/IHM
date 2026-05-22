@@ -1,0 +1,62 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="card my-5">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-center">
+              <div class="text-xl font-semibold text-slate-900">Recrutement</div>
+            </div>
+            <div class="text-center mt-4">
+              <h2 class="text-secondary"><b>Connexion</b></h2>
+              <p class="fs-4">Accedez a votre espace</p>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="loginEmail"
+                placeholder="Email"
+                formControlName="email"
+              />
+              <label for="loginEmail">Email</label>
+              <div class="invalid-feedback d-block" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                Email valide requis.
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="loginPassword"
+                placeholder="Mot de passe"
+                formControlName="motDePasse"
+              />
+              <label for="loginPassword">Mot de passe</label>
+              <div class="invalid-feedback d-block" *ngIf="form.get('motDePasse')?.invalid && form.get('motDePasse')?.touched">
+                Mot de passe requis (8 caracteres minimum).
+              </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="error()">
+              {{ error() }}
+            </div>
+
+            <div class="d-grid mt-4">
+              <button class="btn btn-secondary" type="submit" [disabled]="loading()">
+                {{ loading() ? 'Connexion...' : 'Se connecter' }}
+              </button>
+            </div>
+
+            <hr />
+            <div class="text-center">
+              <a [routerLink]="['/register']">Creer un compte</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

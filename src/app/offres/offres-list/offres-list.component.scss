@@ -1,0 +1,56 @@
+.filter-card {
+	background: linear-gradient(120deg, #f5f7ff 0%, #eef6f9 100%);
+	border: 1px solid rgba(13, 110, 253, 0.08);
+}
+
+.offre-card {
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	background: #ffffff;
+}
+
+.offre-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.empty-card {
+	border: 1px dashed rgba(15, 23, 42, 0.2);
+	background: #fafbff;
+}
+
+.skeleton-card {
+	height: 160px;
+	border-radius: 12px;
+	background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 50%, #f1f5f9 100%);
+	background-size: 200% 100%;
+	animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+.modal-backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(15, 23, 42, 0.55);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1050;
+	padding: 1rem;
+}
+
+.modal-panel {
+	width: min(560px, 100%);
+	background: #ffffff;
+	border-radius: 16px;
+	padding: 1.5rem;
+	box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+}
